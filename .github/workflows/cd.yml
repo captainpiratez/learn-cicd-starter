@@ -22,12 +22,15 @@ jobs:
         run: ./scripts/buildprod.sh
 
       - id: auth
-        uses: 'google-github-actions/auth@v2'
+        uses: google-github-actions/auth@v2
         with:
-          credentials_json: '${{ secrets.GCP_CREDENTIALS }}'
+          credentials_json: ${{ secrets.GCP_CREDENTIALS }}
 
       - name: Set up Cloud SDK
-        uses: 'google-github-actions/setup-gcloud@v3'
-      
-      - name: Deploy to Cloud Run
+        uses: google-github-actions/setup-gcloud@v2
+
+      - name: Use gcloud CLI
+        run: gcloud info
+
+      - name: Build and push Docker image
         run: gcloud builds submit --tag us-central1-docker.pkg.dev/t-pulsar-480913-j9/notely-ar-repo/notely:latest .
