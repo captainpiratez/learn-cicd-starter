@@ -19,4 +19,4 @@ jobs:
                 go-version: "1.25.1"
             
             - name: Deploy application
-              run: ./scripts/deploy.sh
+              run: /scripts/deploy.sh
